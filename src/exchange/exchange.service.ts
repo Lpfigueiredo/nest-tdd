@@ -15,7 +15,7 @@ export class ExchangeService {
       throw new BadRequestException();
     }
 
-    const currencyFrom = this.currenciesService.getCurrency(from);
-    const currencyTo = this.currenciesService.getCurrency(to);
+    const currencyFrom = await this.currenciesService.getCurrency(from);
+    const currencyTo = await this.currenciesService.getCurrency(to);
   }
 }
