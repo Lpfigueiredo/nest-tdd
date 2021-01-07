@@ -1,3 +1,6 @@
+![actions](https://github.com/Lpfigueiredo/nest-tdd/workflows/actions/badge.svg)
+[![codecov](https://codecov.io/gh/Lpfigueiredo/nest-tdd/branch/master/graph/badge.svg?token=A2Z5CYGCST)](https://codecov.io/gh/Lpfigueiredo/nest-tdd)
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
