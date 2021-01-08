@@ -5,6 +5,7 @@ import { CurrenciesRepository } from './currencies.repository';
 
 describe('CurrenciesRepository', () => {
   let repository: CurrenciesRepository;
+  let mockData: Currencies;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -12,6 +13,7 @@ describe('CurrenciesRepository', () => {
     }).compile();
 
     repository = module.get<CurrenciesRepository>(CurrenciesRepository);
+    mockData = { currency: 'USD', value: 1 } as Currencies;
   });
 
   it('should be defined', () => {
@@ -33,8 +35,34 @@ describe('CurrenciesRepository', () => {
     });
 
     it('should return when findOne returns', async () => {
-      repository.findOne = jest.fn().mockReturnValue({ currency: 'USD', value: 1 } as Currencies);
-      await expect(await repository.getCurrency('USD')).toEqual({ currency: 'USD', value: 1 });
+      repository.findOne = jest.fn().mockReturnValue(mockData);
+      expect(await repository.getCurrency('USD')).toEqual(mockData);
+    });
+  });
+
+  describe('createCurrency()', () => {
+    beforeEach(() => {
+      repository.save = jest.fn();
+    });
+
+    it('should call save with correct params', async () => {
+      repository.save = jest.fn().mockReturnValue(mockData);
+      await repository.createCurrency(mockData);
+      expect(repository.save).toBeCalledWith(mockData);
+    });
+
+    it('should throw when save throws', async () => {
+      repository.save = jest.fn().mockRejectedValue(new Error());
+      await expect(repository.createCurrency(mockData)).rejects.toThrow();
+    });
+
+    it('should throw if called with invalid params', async () => {
+      mockData.currency = 'INVALID';
+      await expect(repository.createCurrency(mockData)).rejects.toThrow();
+    });
+
+    it('should return created data', async () => {
+      expect(await repository.createCurrency(mockData)).toEqual(mockData);
     });
   });
 });
