@@ -28,7 +28,7 @@ describe('CurrenciesService', () => {
 
     service = module.get<CurrenciesService>(CurrenciesService);
     repository = module.get<CurrenciesRepository>(CurrenciesRepository);
-    mockData = { currency: 'USD', value: 1 };
+    mockData = { currency: 'USD', value: 1 } as Currencies;
   });
 
   it('should be defined', () => {
