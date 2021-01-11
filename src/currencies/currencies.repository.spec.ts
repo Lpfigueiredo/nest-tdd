@@ -17,6 +17,7 @@ describe('CurrenciesRepository', () => {
     mockData.currency = 'USD';
     mockData.value = 1;
     repository.save = jest.fn();
+    repository.delete = jest.fn();
   });
 
   it('should be defined', () => {
@@ -87,8 +88,11 @@ describe('CurrenciesRepository', () => {
     });
 
     it('should throw when save throws', async () => {
+      repository.findOne = jest.fn().mockReturnValue(mockData);
       repository.save = jest.fn().mockRejectedValue(new Error());
-      await expect(repository.updateCurrency(mockData)).rejects.toThrow();
+      await expect(repository.updateCurrency(mockData)).rejects.toThrow(
+        new InternalServerErrorException(new Error()),
+      );
     });
 
     it('should return updated data', async () => {
@@ -96,6 +100,34 @@ describe('CurrenciesRepository', () => {
       repository.save = jest.fn().mockReturnValue(mockData);
       const result = await repository.updateCurrency({ currency: 'USD', value: 2 });
       expect(result).toEqual({ currency: 'USD', value: 2 });
+    });
+  });
+
+  describe('deleteCurrency()', () => {
+    it('should call findOne with correct params', async () => {
+      repository.findOne = jest.fn().mockReturnValue(mockData);
+      await repository.deleteCurrency('USD');
+      expect(repository.findOne).toBeCalledWith({ currency: 'USD' });
+    });
+
+    it('should throw if findOne returns empty', async () => {
+      repository.findOne = jest.fn().mockReturnValue(undefined);
+      await expect(repository.deleteCurrency('USD')).rejects.toThrow(
+        new NotFoundException(`The currency USD not found`),
+      );
+    });
+
+    it('should call delete with correct params', async () => {
+      repository.findOne = jest.fn().mockReturnValue(mockData);
+      repository.delete = jest.fn().mockReturnValue({});
+      await repository.deleteCurrency('USD');
+      expect(repository.delete).toBeCalledWith({ currency: 'USD' });
+    });
+
+    it('should throw when delete throws', async () => {
+      repository.findOne = jest.fn().mockReturnValue(mockData);
+      repository.delete = jest.fn().mockRejectedValue(new Error());
+      await expect(repository.deleteCurrency('USD')).rejects.toThrow();
     });
   });
 });
