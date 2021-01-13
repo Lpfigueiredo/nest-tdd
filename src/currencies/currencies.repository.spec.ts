@@ -34,7 +34,7 @@ describe('CurrenciesRepository', () => {
     it('should throw if findOne returns empty', async () => {
       repository.findOne = jest.fn().mockReturnValue(undefined);
       await expect(repository.getCurrency('USD')).rejects.toThrow(
-        new InternalServerErrorException(),
+        new NotFoundException(`The currency USD not found`),
       );
     });
 
