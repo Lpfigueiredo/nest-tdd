@@ -1,7 +1,7 @@
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CurrenciesController } from './currencies.controller';
-import { Currencies } from './currencies.entity';
+import { Currencies } from './entities/currencies.entity';
 import { CurrenciesService } from './currencies.service';
 
 describe('CurrenciesController', () => {

@@ -1,7 +1,7 @@
 import { InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { validateOrReject } from 'class-validator';
 import { EntityRepository, Repository } from 'typeorm';
-import { Currencies } from './currencies.entity';
+import { Currencies } from './entities/currencies.entity';
 import { CreateCurrencyDto } from './dto/create-currency.dto';
 
 @EntityRepository(Currencies)

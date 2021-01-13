@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Currencies } from 'src/currencies/currencies.entity';
+import { Currencies } from 'src/currencies/entities/currencies.entity';
 
 export const TypeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',

@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Currencies } from './currencies.entity';
+import { Currencies } from './entities/currencies.entity';
 import { CurrenciesRepository } from './currencies.repository';
 import { CreateCurrencyDto } from './dto/create-currency.dto';
 

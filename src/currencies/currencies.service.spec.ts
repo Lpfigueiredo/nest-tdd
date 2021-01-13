@@ -1,6 +1,6 @@
 import { BadRequestException, InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Currencies } from './currencies.entity';
+import { Currencies } from './entities/currencies.entity';
 import { CurrenciesRepository } from './currencies.repository';
 import { CurrenciesService } from './currencies.service';
 
