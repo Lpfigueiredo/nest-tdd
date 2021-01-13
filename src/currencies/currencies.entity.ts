@@ -12,7 +12,7 @@ export class Currencies {
   @IsNotEmpty()
   currency: string;
 
-  @Column()
+  @Column('numeric')
   @IsNotEmpty()
   @IsNumber()
   value: number;
