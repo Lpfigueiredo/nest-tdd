@@ -2,12 +2,12 @@ import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CurrenciesService } from '../currencies/currencies.service';
 import { ExchangeService } from './exchange.service';
-import { ExchangeInputType } from './types/exchange-input.type';
+import { ExchangeInputDto } from './dto/exchange-input.dto';
 
 describe('ExchangeService', () => {
   let service: ExchangeService;
   let currenciesService: CurrenciesService;
-  let mockData: ExchangeInputType;
+  let mockData: ExchangeInputDto;
 
   beforeEach(async () => {
     const currenciesServiceMock = {
