@@ -3,7 +3,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+API de conversão de moedas usando [Nest](https://github.com/nestjs/nest), Postgres e TDD.
 
 ## Installation
 
@@ -19,9 +19,6 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
@@ -30,11 +27,6 @@ $ npm run start:prod
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
-
-Nest is [MIT licensed](LICENSE).
