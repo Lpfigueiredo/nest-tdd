@@ -1,5 +1,7 @@
 version: '3'
 
+# docker volume create --name=pgdata
+
 services:
   api:
     image: exchange-api
@@ -23,13 +25,13 @@ services:
   postgres:
     image: postgres:13-alpine
     container_name: postgres
+    restart: always
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=nest-tdd
-    restart: always
-    volumes: 
-      - /var/lib/postgresql/data
     networks:
       exchange-network:
         ipv4_address: 1.0.0.3
@@ -40,3 +42,7 @@ networks:
     ipam:
       config:
         - subnet: 1.0.0.0/24
+
+volumes:
+  pgdata:
+    external: true
