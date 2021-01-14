@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: exchange-api
-    command: bash -c "npm install && npm start"
+    command: bash -c "npm run start:prod"
     restart: always
     volumes:
       - .:/app
