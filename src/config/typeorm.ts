@@ -3,10 +3,10 @@ import { Currencies } from 'src/currencies/entities/currencies.entity';
 
 export const TypeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'localhost',
+  host: 'postgres',
   port: 5432,
   username: 'postgres',
-  password: 'admin',
+  password: 'password',
   database: 'nest-tdd',
   entities: [Currencies],
   synchronize: true,
